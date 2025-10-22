@@ -1,14 +1,9 @@
 package com.example.backend.controllers;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.http.MediaType;
 
 import com.example.backend.dto.LoginRequest;
 import com.example.backend.dto.LoginResponse;
-import com.example.backend.models.User;
 import com.example.backend.enums.Role;
+import com.example.backend.models.User;
 import com.example.backend.repositories.UserRepository;
 import com.example.backend.services.JwtService;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,14 +14,12 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@WebMvcTest(AuthController.class)
-@AutoConfigureMockMvc(addFilters = false)
-
-    
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@Transactional
 public class AuthControllerTest {
 
     @LocalServerPort
@@ -50,23 +43,28 @@ public class AuthControllerTest {
     @BeforeEach
     public void setUp() {
         baseUrl = "http://localhost:" + port + "/api/auth";
+        userRepository.deleteAll(); // Nettoyage de la base
 
-        // Clear any existing test data
-        userRepository.deleteAll();
-
-        // Create a test user with properly encoded password
-        testUser = new User();
-        testUser.setUsername("testuser");
-        testUser.setPassword(passwordEncoder.encode("test1234")); // Encode the password
-        testUser.setRole(Role.Chef_Dep_info);
-        testUser.setFirstname("Test");
-        testUser.setLastname("User");
-        testUser.setMail("test@example.com");
-        userRepository.save(testUser);
+        // Création de l'utilisateur de test
+        testUser = createTestUser("testuser", "test1234");
     }
 
+    /** Méthode utilitaire pour créer un utilisateur avec mot de passe encodé */
+    private User createTestUser(String username, String rawPassword) {
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(passwordEncoder.encode(rawPassword));
+        user.setRole(Role.Chef_Dep_info);
+        user.setFirstname("Test");
+        user.setLastname("User");
+        user.setMail(username + "@example.com");
+        return userRepository.save(user);
+    }
+
+    // -------------------- TESTS POSITIFS --------------------
+
     @Test
-    public void testLogin_Success() {
+    void testLogin_Success() {
         LoginRequest request = new LoginRequest("testuser", "test1234");
 
         ResponseEntity<LoginResponse> response = restTemplate.postForEntity(
@@ -79,12 +77,11 @@ public class AuthControllerTest {
         assertNotNull(response.getBody());
         assertEquals("testuser", response.getBody().getUsername());
         assertNotNull(response.getBody().getToken());
+        assertTrue(jwtService.isTokenValid(response.getBody().getToken(), testUser));
     }
 
-
     @Test
-    public void testGetUserProfile_Success() {
-        // Generate token for our test user
+    void testGetUserProfile_Success() {
         String token = jwtService.generateToken(testUser);
 
         HttpHeaders headers = new HttpHeaders();
@@ -103,5 +100,59 @@ public class AuthControllerTest {
         assertEquals(Role.Chef_Dep_info, response.getBody().getRole());
     }
 
+    // -------------------- TESTS NÉGATIFS --------------------
+
+    @Test
+    void testLogin_Failure_WrongPassword() {
+        LoginRequest request = new LoginRequest("testuser", "wrongpass");
+
+        ResponseEntity<String> response = restTemplate.postForEntity(
+                baseUrl + "/login",
+                request,
+                String.class
+        );
+
+        assertEquals(HttpStatus.UNAUTHORIZED, response.getStatusCode());
+    }
+
+    @Test
+    void testLogin_Failure_UserNotFound() {
+        LoginRequest request = new LoginRequest("unknownuser", "test1234");
+
+        ResponseEntity<String> response = restTemplate.postForEntity(
+                baseUrl + "/login",
+                request,
+                String.class
+        );
+
+        assertEquals(HttpStatus.UNAUTHORIZED, response.getStatusCode());
+    }
+
+    @Test
+    void testGetUserProfile_Unauthorized_NoToken() {
+        ResponseEntity<String> response = restTemplate.exchange(
+                baseUrl + "/me",
+                HttpMethod.GET,
+                HttpEntity.EMPTY,
+                String.class
+        );
+
+        assertEquals(HttpStatus.UNAUTHORIZED, response.getStatusCode());
+    }
+
+    @Test
+    void testGetUserProfile_Unauthorized_InvalidToken() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setBearerAuth("invalid.token.here");
+
+        ResponseEntity<String> response = restTemplate.exchange(
+                baseUrl + "/me",
+                HttpMethod.GET,
+                new HttpEntity<>(headers),
+                String.class
+        );
+
+        assertEquals(HttpStatus.UNAUTHORIZED, response.getStatusCode());
+    }
 
 }
