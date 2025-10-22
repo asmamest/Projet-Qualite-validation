@@ -77,7 +77,8 @@ public class AuthControllerTest {
         assertNotNull(response.getBody());
         assertEquals("testuser", response.getBody().getUsername());
         assertNotNull(response.getBody().getToken());
-        assertTrue(jwtService.isTokenValid(response.getBody().getToken(), testUser));
+        assertTrue(jwtService.isTokenValid(response.getBody().getToken(), testUser.getUsername()));
+
     }
 
     @Test
