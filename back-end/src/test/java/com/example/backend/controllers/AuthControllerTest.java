@@ -23,6 +23,9 @@ import org.springframework.test.annotation.DirtiesContext;
 import static org.junit.jupiter.api.Assertions.*;
 
 @WebMvcTest(AuthController.class)
+@AutoConfigureMockMvc(addFilters = false)
+
+    
 public class AuthControllerTest {
 
     @LocalServerPort
