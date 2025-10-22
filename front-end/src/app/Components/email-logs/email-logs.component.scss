@@ -1,0 +1,124 @@
+// email-logs.component.scss
+
+.container {
+  max-width: 950px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+h2 {
+  color: #2c3e50;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #3498db, #9b59b6);
+    border-radius: 3px;
+  }
+}
+
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  overflow: hidden;
+  background: white;
+
+  thead {
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    color: white;
+
+    tr {
+      th {
+        padding: 1.2rem 1rem;
+        font-weight: 500;
+        text-align: left;
+        &:first-child {
+          border-top-left-radius: 12px;
+        }
+        &:last-child {
+          border-top-right-radius: 12px;
+        }
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      transition: all 0.2s ease;
+      border-bottom: 1px solid #f0f0f0;
+
+      &:hover {
+        background-color: #f8f9fa;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      }
+
+      &:last-child {
+        td {
+          border-bottom: none;
+          &:first-child {
+            border-bottom-left-radius: 12px;
+          }
+          &:last-child {
+            border-bottom-right-radius: 12px;
+          }
+        }
+      }
+
+      td {
+        padding: 1.2rem 1rem;
+        color: #555;
+
+        &:nth-child(1) { // Destinataire
+          color: #2980b9;
+          font-weight: 500;
+        }
+
+        &:nth-child(2) { // Sujet
+          font-weight: 500;
+          color: #2c3e50;
+        }
+
+        &:nth-child(3) { // Contenu
+          max-width: 300px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        &:nth-child(4) { // Date
+          color: #7f8c8d;
+          font-size: 0.9em;
+        }
+      }
+    }
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .table {
+    display: block;
+    overflow-x: auto;
+
+    &::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #bdc3c7;
+      border-radius: 3px;
+    }
+  }
+}

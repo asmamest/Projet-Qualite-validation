@@ -1,0 +1,404 @@
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  margin-left: 25%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.emoji-title {
+  margin-right: 10px;
+}
+
+.add-btn {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.add-btn:hover {
+  background-color: #45a049;
+}
+
+.emoji-btn {
+  margin-right: 8px;
+}
+
+.filters-card {
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.filter-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.filter-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.filter-group select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+.group-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  margin-bottom: 25px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.group-header {
+  background-color: #3f51b5;
+  color: white;
+  padding: 15px 20px;
+}
+
+.group-header h3 {
+  margin: 0;
+}
+
+.group-content {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 30px;
+}
+
+.enseignants-section, .matieres-section {
+  margin-bottom: 20px;
+}
+
+.enseignants-section h4, .matieres-section h4 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #eee;
+}
+
+.emoji-label {
+  margin-right: 8px;
+}
+
+.enseignants-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.enseignant-item {
+  background-color: #f9f9f9;
+  padding: 10px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.enseignant-name {
+  font-weight: 500;
+}
+
+.enseignant-email {
+  color: #666;
+  font-size: 0.9em;
+}
+
+.matieres-table {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+  font-weight: 600;
+}
+
+tr:hover {
+  background-color: #f5f5f5;
+}
+
+.no-results, .no-data {
+  text-align: center;
+  padding: 30px;
+  color: #666;
+}
+
+.no-results .emoji {
+  font-size: 2em;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top: 4px solid #3f51b5;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 15px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+  .group-content {
+    grid-template-columns: 1fr;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .filter-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Styles existants... */
+
+.matieres-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.matieres-table th,
+.matieres-table td {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  vertical-align: top;
+}
+
+.matieres-table th {
+  background-color: #f2f2f2;
+  font-weight: 600;
+}
+
+.matieres-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.matieres-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Style pour les listes dans les cellules */
+.matiere-item, .email-item {
+  padding: 4px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.matiere-item:last-child, .email-item:last-child {
+  border-bottom: none;
+}
+/* Styles de base */
+.container {
+  padding: 20px;
+}
+
+/* Style du tableau */
+.matieres-table {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.matieres-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.matieres-table th,
+.matieres-table td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.matieres-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+/* Style des listes dans les cellules */
+.matieres-table td div {
+  margin: 4px 0;
+}
+
+/* Style pour les groupes */
+.group-card {
+  margin-bottom: 30px;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.group-header {
+  background-color: #3f51b5;
+  color: white;
+  padding: 15px;
+}
+
+.group-header h3 {
+  margin: 0;
+}
+/* Ajoutez à votre fichier CSS */
+.matieres-table input[type="checkbox"] {
+  transform: scale(1.5);
+  cursor: pointer;
+}
+
+.matieres-table td {
+  text-align: center;
+  vertical-align: middle;
+}
+/* Style spécifique pour le tableau des matières */
+.matieres-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.matieres-table th,
+.matieres-table td {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.matieres-table th {
+  background-color: #f2f2f2;
+  font-weight: 600;
+}
+
+/* Style spécifique pour les colonnes Recu/Validé */
+.matieres-table th:nth-child(4),
+.matieres-table th:nth-child(5),
+.matieres-table td:nth-child(4),
+.matieres-table td:nth-child(5) {
+  text-align: center;
+  width: 120px; /* Largeur fixe pour ces colonnes */
+}
+
+/* Style pour les valeurs booléennes */
+.status-value {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: normal;
+}
+
+.status-value.false {
+  font-weight: bold;
+  color: #d32f2f; /* Rouge pour "Faux" */
+}
+
+.status-value.true {
+  color: #388e3c; /* Vert pour "Vrai" */
+}
+
+/* Style pour les lignes */
+.matieres-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.matieres-table tr:hover {
+  background-color: #f1f1f1;
+}
+.status-cell {
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  padding: 12px 15px;
+}
+
+.status-cell.false {
+  font-weight: bold;
+  color: #d32f2f; /* Rouge pour Faux */
+}
+
+.status-cell:not(.false) {
+  color: #388e3c; /* Vert pour Vrai */
+}
+
+.status-cell.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.status-cell:hover:not(.disabled) {
+  background-color: #f0f0f0;
+}
+.date-limite {
+  font-size: 0.8em;
+  color: #666;
+  margin-top: 4px;
+}
+
+.email-btn {
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.9em;
+}
+
+.email-btn:hover {
+  background-color: #0b7dda;
+}
+
+.email-btn .emoji-btn {
+  font-size: 1.1em;
+}
+
+/* Le reste du CSS peut être identique au composant original */

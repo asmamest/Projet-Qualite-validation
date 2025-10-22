@@ -1,0 +1,309 @@
+/* Palette de couleurs modernes et professionnelles pour ENICarthage */
+:root {
+  --primary-color: #0056b3; /* Bleu institutionnel */
+  --secondary-color: #0077cc; /* Bleu plus clair */
+  --accent-color: #ff5722; /* Orange pour les accents */
+  --light-bg: #f8fafc; /* Fond très clair */
+  --text-color: #1e293b; /* Texte foncé */
+  --light-text: #64748b; /* Texte secondaire */
+  --border-color: #e2e8f0; /* Couleur des bordures */
+  --success-color: #10b981; /* Vert pour le bouton */
+  --eni-blue: #0056b3; /* Bleu ENICarthage */
+}
+
+.platform-login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: var(--light-bg);
+  padding: 2rem;
+  background-image: linear-gradient(135deg, rgba(0, 86, 179, 0.03) 0%, rgba(0, 119, 204, 0.08) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.platform-login-container::before {
+  content: "";
+  position: absolute;
+  top: -10%;
+  right: -10%;
+  width: 60%;
+  height: 60%;
+  background: radial-gradient(circle, rgba(0, 86, 179, 0.05) 0%, rgba(0, 119, 204, 0.02) 70%);
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.platform-login-container::after {
+  content: "";
+  position: absolute;
+  bottom: -10%;
+  left: -10%;
+  width: 70%;
+  height: 70%;
+  background: radial-gradient(circle, rgba(0, 86, 179, 0.05) 0%, rgba(0, 119, 204, 0.02) 70%);
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 440px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 86, 179, 0.1);
+  padding: 2.5rem;
+  border: 1px solid rgba(0, 119, 204, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.login-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 86, 179, 0.15);
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.school-logo {
+  max-width: 180px;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.school-logo:hover {
+  transform: scale(1.05);
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.login-header h1 {
+  color: var(--eni-blue);
+  font-weight: 700;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.5px;
+}
+
+.login-header .welcome-message {
+  color: var(--light-text);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.input-field {
+  margin-bottom: 1.5rem;
+}
+
+.input-field label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.input-with-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-with-icon i:first-child {
+  position: absolute;
+  left: 15px;
+  color: var(--eni-blue);
+  font-size: 1.1rem;
+  z-index: 1;
+}
+
+.input-with-icon .toggle-password {
+  position: absolute;
+  right: 15px;
+  cursor: pointer;
+  color: var(--light-text);
+  transition: color 0.2s;
+  z-index: 2;
+}
+
+.input-with-icon .toggle-password:hover {
+  color: var(--eni-blue);
+}
+
+.input-with-icon input {
+  width: 100%;
+  padding: 0.9rem 1rem 0.9rem 45px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s;
+  color: var(--text-color);
+  background-color: #f8fafc;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.input-with-icon input:focus {
+  border-color: var(--eni-blue);
+  box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.2);
+  outline: none;
+  background-color: white;
+}
+
+.input-with-icon input::placeholder {
+  color: var(--light-text);
+  opacity: 0.7;
+}
+
+.remember-forgot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1.5rem 0;
+  font-size: 0.9rem;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+}
+
+.remember-me input {
+  margin-right: 8px;
+  width: 16px;
+  height: 16px;
+  accent-color: var(--eni-blue);
+  cursor: pointer;
+}
+
+.remember-me label {
+  color: var(--text-color);
+  cursor: pointer;
+  user-select: none;
+}
+
+.forgot-password {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+  color: #e64a19; /* Darker orange */
+}
+
+.login-button {
+  width: 100%;
+  padding: 1rem;
+  color: #000000;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 1rem;
+  background: linear-gradient(135deg, var(--eni-blue), #0077cc);
+  box-shadow: 0 4px 6px rgba(0, 86, 179, 0.2);
+}
+
+.login-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 86, 179, 0.25);
+  background: linear-gradient(135deg, #004a9f, #0069b3);
+}
+
+.login-button:active {
+  transform: translateY(0);
+}
+
+.login-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.login-button i {
+  transition: transform 0.3s;
+}
+
+.login-button:hover i {
+  transform: translateX(3px);
+}
+
+.login-footer {
+  text-align: center;
+  margin-top: 2.5rem;
+  color: var(--light-text);
+  font-size: 0.8rem;
+  border-top: 1px solid var(--border-color);
+  padding-top: 1.5rem;
+}
+
+.login-footer p {
+  margin-bottom: 0.8rem;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.footer-links a {
+  color: var(--eni-blue);
+  text-decoration: none;
+  transition: color 0.3s;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.footer-links a:hover {
+  color: var(--accent-color);
+  text-decoration: underline;
+}
+
+/* Animation pour le toggle password */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.toggle-password {
+  animation: fadeIn 0.3s ease;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .login-card {
+    padding: 1.5rem;
+  }
+
+  .login-header h1 {
+    font-size: 1.75rem;
+  }
+
+  .remember-forgot {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+}

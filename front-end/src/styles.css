@@ -1,0 +1,30 @@
+
+@import "primeflex/primeflex.css";
+
+/* You can add global styles to this file, and also import other style files */
+@import "primeflex/primeflex.css";
+/* Import de polices Google */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Application de la police */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: var(--light-bg);
+  padding: 2rem;
+  background-image: linear-gradient(135deg, rgba(0, 86, 179, 0.03) 0%, rgba(0, 119, 204, 0.08) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+.
+>>>>>>> feature-dashboard

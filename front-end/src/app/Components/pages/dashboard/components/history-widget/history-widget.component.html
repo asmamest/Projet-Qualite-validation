@@ -1,0 +1,33 @@
+<div class="card !mb-8">
+  <div class="font-semibold text-xl mb-4">Dernier mise à jour</div>
+  <p-table [value]="updates" [paginator]="true" [rows]="5" responsiveLayout="scroll">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Enseignant</th>
+        <th>Matière</th>
+        <th>Département</th>
+        <th>Niveau</th>
+        <th>Reçu</th>
+        <th>Validé</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-update>
+      <tr>
+        <td style="width: 15%; min-width: 5rem;">{{ update.enseignant?.nom }}</td>
+        <td style="width: 15%; min-width: 5rem;">{{ update.nomMatiere }}</td>
+        <td style="width: 15%; min-width: 5rem;">{{ update.departement }}</td>
+        <td style="width: 15%; min-width: 5rem;">{{ update.niveau }}</td>
+        <td style="width: 10%; min-width: 5rem;">
+          <span [ngClass]="update.recu ? 'text-green-500' : 'text-red-500'">
+            {{ update.recu ? 'Oui' : 'Non' }}
+          </span>
+        </td>
+        <td style="width: 10%; min-width: 5rem;">
+          <span [ngClass]="update.valide ? 'text-green-500' : 'text-red-500'">
+            {{ update.valide ? 'Oui' : 'Non' }}
+          </span>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

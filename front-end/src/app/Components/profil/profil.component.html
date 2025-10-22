@@ -1,0 +1,60 @@
+<!-- Page Wrapper for Centering -->
+<div class="min-h-screen flex items-center justify-center bg-gray-50 profile-container">
+  <div class="container mx-auto py-10">
+    <div class="max-w-4xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+
+        <!-- Profile Picture Slot (Left Column) -->
+        <app-profile-picture-upload
+          [userId]="user?.id"
+          [initialImageUrl]="user?.profileImageUrl"
+          (pictureUploaded)="onProfileImageUploaded($event)"
+        ></app-profile-picture-upload>
+
+
+
+        <!-- User Info (Right Column) -->
+        <div class="md:col-span-2 space-y-6">
+          <div>
+            <h3 class="text-xl font-semibold">Profil</h3>
+            <p class="text-sm text-muted-foreground">Consulter votre profil</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="space-y-2">
+              <label class="text-sm font-medium leading-none">Prenom</label>
+              <div class="p-2 border rounded-md bg-muted/50">{{ user?.firstname }}</div>
+            </div>
+
+            <div class="space-y-2">
+              <label class="text-sm font-medium leading-none">Nom</label>
+              <div class="p-2 border rounded-md bg-muted/50">{{ user?.lastname }}</div>
+            </div>
+
+            <div class="space-y-2">
+              <label class="text-sm font-medium leading-none">Non d'utilisateur</label>
+              <div class="p-2 border rounded-md bg-muted/50">{{ user?.username }}</div>
+            </div>
+
+            <div class="space-y-2">
+              <label class="text-sm font-medium leading-none">Email</label>
+              <div class="p-2 border rounded-md bg-muted/50">{{ user?.mail }}</div>
+            </div>
+
+            <div class="space-y-2">
+              <label class="text-sm font-medium leading-none">Tel</label>
+              <div class="p-2 border rounded-md bg-muted/50">{{ user?.tel }}</div>
+            </div>
+
+            <div class="space-y-2">
+              <label class="text-sm font-medium leading-none">Role</label>
+              <div class="p-2 border rounded-md bg-muted/50">{{ user?.role }}</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+

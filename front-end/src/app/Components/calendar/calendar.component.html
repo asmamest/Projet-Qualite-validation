@@ -1,0 +1,29 @@
+<div class="calendar-container">
+  <div class="calendar-header">
+    <button class="nav-button" (click)="previousMonth()">
+      <span class="arrow">&#10094;</span>
+    </button>
+    <div class="month-year">
+      {{ monthNames[currentDate.getMonth()] }} {{ currentDate.getFullYear() }}
+    </div>
+    <button class="nav-button" (click)="nextMonth()">
+      <span class="arrow">&#10095;</span>
+    </button>
+  </div>
+
+  <div class="calendar-grid">
+    <div class="weekday" *ngFor="let day of dayNames">{{ day }}</div>
+
+    <ng-container *ngFor="let week of weeks">
+      <ng-container *ngFor="let day of week">
+        <div
+          class="day"
+          [class.empty]="day === null"
+          [class.today]="isToday(day)"
+        >
+          {{ day !== null ? day : '' }}
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+</div>

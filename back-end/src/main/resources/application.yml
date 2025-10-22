@@ -1,0 +1,61 @@
+spring:
+  config:
+    activate:
+      on-profile: docker
+  application:
+    name: backend
+
+
+  datasource:
+    url: jdbc:mysql://mysql-db:3306/projectweb?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: root
+    password: ${DB_PASSWORD:12416jihedCherifa?!}
+    hikari:
+      connection-timeout: 30000
+      maximum-pool-size: 10
+  spring:
+    jpa:
+      properties:
+        hibernate:
+         dialect: org.hibernate.dialect.MySQLDialect
+      open-in-view: false
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: enicarthage30@gmail.com
+    password: vapgclaevhrhbghg
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+server:
+  port: 8083
+  tomcat:
+    apr:
+      enabled: false
+    protocol: org.apache.coyote.http11.Http11NioProtocol
+  #servlet:
+    #context-path: /api/ExamsState/
+
+springdoc:
+  default-produces-media-type: application/json
+
+logging:
+  level:
+    org:
+      apache:
+        tomcat: DEBUG
+      springframework:
+        web: DEBUG
+        boot:
+          autoconfigure:
+            web: DEBUG
+        mail: DEBUG
+    com:
+      example:
+        backend: DEBUG
+      sun:
+        mail: DEBUG

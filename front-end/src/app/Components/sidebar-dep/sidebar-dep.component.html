@@ -1,0 +1,16 @@
+<div class ="large-margin-top">
+<ul class="layout-menu">
+  <ng-container *ngFor="let item of model; let i = index">
+    <app-menuitem *ngIf="!item.separator" [item]="item" [index]="i" [root]="true">
+
+    </app-menuitem>
+    <li *ngIf="item.separator" class="menu-separator"></li>
+  </ng-container>
+</ul>
+<p-button
+  (onClick)="logout()"
+  styleClass="p-button-text logout-btn">
+  <span class="p-button-icon pi pi-sign-out"></span>
+  <span class="p-button-label">Déconnexion</span>
+</p-button>
+</div>

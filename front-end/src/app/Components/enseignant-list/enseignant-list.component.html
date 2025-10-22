@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liste des Enseignants</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    .enseignant-container {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .header h1 {
+      color: #2c3e50;
+      margin: 0;
+    }
+
+    .enseignant-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .enseignant-card {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    .enseignant-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card-header {
+      background-color: #3498db;
+      color: white;
+      padding: 15px;
+    }
+
+    .card-header h3 {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+
+    .matricule {
+      font-size: 0.8rem;
+      opacity: 0.8;
+    }
+
+    .card-body {
+      padding: 15px;
+    }
+
+    .info-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .info-row i {
+      margin-right: 10px;
+      color: #7f8c8d;
+    }
+
+    .info-row a {
+      color: #3498db;
+      text-decoration: none;
+    }
+
+    .info-row a:hover {
+      text-decoration: underline;
+    }
+
+    .details-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .detail-item {
+      margin-bottom: 5px;
+    }
+
+    .detail-label {
+      display: block;
+      font-size: 0.8rem;
+      color: #7f8c8d;
+    }
+
+    .detail-value {
+      font-weight: 500;
+    }
+
+    .dept-badge {
+      background-color: #e3f2fd;
+      color: #1976d2;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+    }
+
+    .card-actions {
+      padding: 10px 15px;
+      border-top: 1px solid #ecf0f1;
+      text-align: right;
+    }
+
+    .btn-delete {
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: background-color 0.3s;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .btn-delete:hover {
+      background-color: #c0392b;
+    }
+
+    .btn-delete i {
+      margin-right: 20px;
+    }
+
+    .global-actions {
+      text-align: right;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+<div class="enseignant-container">
+  <div class="header">
+    <h1>
+      <i class="bi bi-mortarboard-fill"></i> Liste des Enseignants
+    </h1>
+    <div class="stats-badge">
+      <!-- Vous pouvez ajouter des statistiques ici si besoin -->
+    </div>
+  </div>
+
+  <div class="enseignant-grid">
+    <div *ngFor="let e of enseignants" class="enseignant-card">
+      <div class="card-header">
+        <h3>{{ e.nom }}</h3>
+        <span class="matricule">ID: {{ e.id }}</span>
+      </div>
+
+      <div class="card-body">
+        <div class="info-row">
+          <i class="bi bi-envelope"></i>
+          <a href="mailto:{{ e.email }}">{{ e.email }}</a>
+        </div>
+
+        <div class="details-grid">
+          <div class="detail-item">
+            <span class="detail-label">Département</span>
+            <span class="detail-value badge dept-badge">{{ e.departement }}</span>
+          </div>
+
+          <div class="detail-item">
+            <span class="detail-label">Spécialité</span>
+            <span class="detail-value">{{ e.specialite }}</span>
+          </div>
+
+          <div class="detail-item">
+            <span class="detail-label">Niveau</span>
+            <span class="detail-value">{{ e.niveau }}</span>
+          </div>
+
+          <div class="detail-item">
+            <span class="detail-label">Groupe</span>
+            <span class="detail-value">{{ e.groupe }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-actions">
+        <button class="btn-delete" (click)="deleteEnseignant(e.id)">
+          <i class="bi bi-trash3"></i> Supprimer
+        </button>
+      </div>
+
+    </div>
+    <div class="global-actions">
+      <button class="btn-delete" (click)="deleteAll()">
+        <i class="bi bi-trash3"></i> Supprimer tous les enseignants
+      </button>
+    </div>
+  </div>
+
+
+</div>
+
+</body>
+</html>

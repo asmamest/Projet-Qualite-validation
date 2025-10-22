@@ -1,0 +1,376 @@
+/* Variables pour les couleurs et thèmes */
+:root {
+  --primary: #3f51b5;
+  --primary-light: #757de8;
+  --primary-gradient: linear-gradient(135deg, #3f51b5, #5c6bc0);
+  --secondary: #ff4081;
+  --text-primary: #2c3e50;
+  --text-secondary: #546e7a;
+  --background: #f9fafc;
+  --card-bg: #ffffff;
+  --success: #4caf50;
+  --success-gradient: linear-gradient(135deg, #4caf50, #2e7d32);
+  --error: #f44336;
+  --error-gradient: linear-gradient(135deg, #f44336, #c62828);
+  --border-radius: 12px;
+  --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 6px 16px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.12);
+  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Conteneur principal */
+.form-container {
+  max-width: 1000px;
+  margin: 2.5rem auto;
+  padding: 2.5rem;
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+  animation: fadeIn 0.6s ease-out;
+}
+
+.form-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: var(--primary-gradient);
+}
+
+/* Animation d'entrée */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Titre */
+.form-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 2rem;
+  text-align: center;
+  position: relative;
+  padding-bottom: 0.75rem;
+  letter-spacing: 0.5px;
+}
+
+.form-title::after {
+  content: "";
+  position: absolute;
+  width: 80px;
+  height: 4px;
+  background: var(--primary-gradient);
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+/* Carte du formulaire */
+.form-card {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 7rem;
+  margin-bottom: 2rem;
+  background-color: var(--background);
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
+}
+
+@media (min-width: 768px) {
+  .form-card {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Colonnes du formulaire */
+.form-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Groupes de champs */
+.form-group {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+/* Styles PrimeNG améliorés */
+::ng-deep .p-inputgroup {
+  display: flex;
+  position: relative;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+::ng-deep .p-inputgroup:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+::ng-deep .p-inputgroup-addon {
+  background: var(--primary-gradient) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: var(--border-radius) 0 0 var(--border-radius) !important;
+  width: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+::ng-deep .p-inputgroup-addon .pi {
+  font-size: 1.1rem;
+}
+
+::ng-deep .p-inputtext,
+::ng-deep .p-dropdown {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+  font-size: 1rem;
+  transition: var(--transition);
+  background-color: white;
+}
+
+::ng-deep .p-inputtext:enabled:focus,
+::ng-deep .p-dropdown:not(.p-disabled).p-focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(63, 81, 181, 0.1);
+  outline: none;
+}
+
+::ng-deep .p-dropdown-panel {
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+}
+
+::ng-deep .p-dropdown-items {
+  padding: 0.5rem 0;
+}
+
+::ng-deep .p-dropdown-item {
+  padding: 0.75rem 1.25rem;
+  transition: var(--transition);
+}
+
+::ng-deep .p-dropdown-item:hover {
+  background-color: rgba(63, 81, 181, 0.08);
+}
+
+/* Boutons d'action */
+.form-actions {
+
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+::ng-deep .submit-btn.p-button {
+  background: var(--primary-gradient);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: var(--border-radius);
+  min-width: 250px;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+::ng-deep .submit-btn.p-button:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+::ng-deep .submit-btn.p-button:active {
+  transform: translateY(-1px);
+}
+
+::ng-deep .submit-btn.p-button .p-button-icon {
+  font-size: 1.1rem;
+  margin-right: 0.5rem;
+}
+
+::ng-deep .submit-btn.p-button::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: 0.5s;
+}
+
+::ng-deep .submit-btn.p-button:hover::after {
+  left: 100%;
+}
+
+::ng-deep .submit-btn.p-button:disabled {
+  background: #b0bec5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Messages d'erreur */
+.error-message {
+  color: var(--error);
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  font-weight: 500;
+  animation: shake 0.5s;
+  display: block;
+  text-align: left;
+  padding-left: 0.5rem;
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20%,
+  60% {
+    transform: translateX(-5px);
+  }
+  40%,
+  80% {
+    transform: translateX(5px);
+  }
+}
+
+/* Notification */
+.notification {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  padding: 1rem 1.5rem;
+  border-radius: var(--border-radius);
+  color: white;
+  background: var(--success-gradient);
+  box-shadow: 0 6px 20px rgba(76, 175, 80, 0.3);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transform: translateX(150%);
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.notification.show {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.notification.error {
+  background: var(--error-gradient);
+  box-shadow: 0 6px 20px rgba(244, 67, 54, 0.3);
+}
+
+.notification-icon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.notification-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+  overflow: hidden;
+}
+
+.notification-progress::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: white;
+  animation: progress 3s linear forwards;
+}
+
+@keyframes progress {
+  to {
+    width: 0%;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .form-container {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+
+  .form-title {
+    font-size: 1.5rem;
+  }
+
+  .form-card {
+    padding: 1.5rem;
+  }
+
+  ::ng-deep .submit-btn.p-button {
+    min-width: 100%;
+    padding: 0.75rem 1.5rem;
+  }
+}
+
+/* Effet de focus sur les champs */
+::ng-deep .form-input:focus,
+::ng-deep .form-dropdown:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(63, 81, 181, 0.1);
+}
+
+/* Effet de survol sur les champs */
+::ng-deep .form-input:hover,
+::ng-deep .form-dropdown:hover {
+  border-color: #c5cae9;
+}
+
+/* Animation pour les champs invalides */
+::ng-deep .ng-invalid.ng-touched {
+  animation: pulse 1s;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(244, 67, 54, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 5px rgba(244, 67, 54, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(244, 67, 54, 0);
+  }
+}

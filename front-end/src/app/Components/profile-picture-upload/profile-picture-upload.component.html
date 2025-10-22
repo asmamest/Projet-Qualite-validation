@@ -1,0 +1,13 @@
+<div class="profile-picture-container">
+  <img
+    class="profile-image"
+    [src]="previewUrl || initialImageUrl || defaultImageUrl"
+    alt="Profile Picture"
+    (error)="onImageError()"
+  />
+
+  <label class="upload-button">
+    Modifier votre image
+    <input type="file" hidden (change)="onFileSelected($event)" />
+  </label>
+</div>

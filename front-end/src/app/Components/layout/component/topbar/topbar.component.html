@@ -1,0 +1,92 @@
+<div class="layout-topbar">
+  <div class="layout-topbar-logo-container">
+    <button class="layout-menu-button layout-topbar-action" (click)="layoutService.onMenuToggle()">
+      <i class="pi pi-bars"></i>
+    </button>
+
+    <a class="layout-topbar-logo" [routerLink]="['/layout']">
+      <!-- Remplacement du SVG par une balise img -->
+      <img src="./assets/images/logoplatyyy.png" alt="Logo Plateforme" class="platform-logo">
+      <span></span>
+    </a>
+
+  </div>
+
+  <div class="layout-topbar-actions">
+    <div class="layout-config-menu">
+      <!-- Bouton mode sombre (commenté) -->
+      <!--<button type="button" class="layout-topbar-action" (click)="toggleDarkMode()">
+        <i [ngClass]="{ 'pi ': true, 'pi-moon': layoutService.isDarkTheme(), 'pi-sun': !layoutService.isDarkTheme() }"></i>
+      </button>-->
+      <div class="relative">
+        <!-- Configurateur (commenté) -->
+        <!--<button
+          class="layout-topbar-action layout-topbar-action-highlight"
+          pStyleClass="@next"
+          enterFromClass="hidden"
+          enterActiveClass="animate-scalein"
+          leaveToClass="hidden"
+          leaveActiveClass="animate-fadeout"
+          [hideOnOutsideClick]="true"
+        >
+          <i class="pi pi-palette"></i>
+        </button>-->
+        <app-configurator></app-configurator>
+      </div>
+    </div>
+
+    <button class="layout-topbar-menu-button layout-topbar-action" pStyleClass="@next" enterFromClass="hidden" enterActiveClass="animate-scalein" leaveToClass="hidden" leaveActiveClass="animate-fadeout" [hideOnOutsideClick]="true">
+      <i class="pi pi-ellipsis-v"></i>
+    </button>
+
+    <div class="layout-topbar-menu hidden lg:block">
+      <div class="layout-topbar-menu-content">
+
+        <!-- Wrap the calendar icon and popup in a relative container -->
+        <div style="position: relative; display: inline-block;">
+          <!-- Calendar Icon Button -->
+          <button type="button" class="layout-topbar-action" (click)="toggleCalendar()">
+            <i class="pi pi-calendar"></i>
+            <span>Calendar</span>
+          </button>
+
+          <!-- Calendar Popup -->
+          <div
+            class="calendar-popup"
+            *ngIf="showCalendar"
+            style="
+      position: absolute;
+      top: 100%;
+      right: 0;
+      margin-top: 0px;
+
+      z-index: 9999;
+      background: transparent; /* changed */
+      box-shadow: none;         /* optional */
+      border-radius: 0;         /* optional */
+      overflow: visible;
+    "
+          >
+            <app-calendar></app-calendar>
+          </div>
+        </div>
+
+
+
+        <a [routerLink]="['/Emails']">
+    <button type="button" class="layout-topbar-action">
+      <i class="pi pi-inbox"></i>
+      <span>Mail</span>
+    </button>
+    </a>
+
+    <a [routerLink]="['/profile']">
+      <img
+        [src]="profilePictureUrl || defaultImageUrl"
+        alt="Profile"
+        class="navbar-avatar"
+        (error)="profilePictureUrl = defaultImageUrl"
+      />
+    </a>
+  </div>
+</div>

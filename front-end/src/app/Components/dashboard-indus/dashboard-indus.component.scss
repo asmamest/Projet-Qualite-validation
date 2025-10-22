@@ -1,0 +1,32 @@
+.stats-container {
+  margin-top: -10rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.chart-row {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap; // allows responsiveness for small screens
+  width: 100%;
+
+}
+
+.chart-wrapper {
+  flex: 1 1 300px; // grow, shrink, base width
+  max-width: 400px;
+  margin-bottom: 2rem;
+}
+
+.enseignant-box {
+  margin-top: 20px;
+  padding: 20px;
+  border: 2px solid #3498db;
+  border-radius: 8px;
+  background-color: #ecf0f1;
+  width: fit-content;
+  text-align: center;
+}

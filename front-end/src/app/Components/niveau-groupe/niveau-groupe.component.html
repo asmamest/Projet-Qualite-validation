@@ -1,0 +1,183 @@
+<div class="flex justify-content-center align-items-center min-h-screen p-1">
+
+  <div class="fixed top-0 right-0 p-4 z-5">
+  <p-button (click)="displayBasic = true" label="Ajouter une classe"></p-button>
+  </div>
+
+  <p-dialog header="Ajouter un groupe" [(visible)]="displayBasic" [style]="{ width: '800px', height: '500px' }">
+    <!-- Formulaire pour ajouter un groupe -->
+    <div class="p-fluid grid p-2">
+      <div class="field col-6 ">
+        <label for="name">Nom du groupe</label>
+        <p-inputGroup>
+          <input
+            pInputText
+            id="name"
+            [(ngModel)]="name"
+            placeholder="Entrez le nom"
+            required
+            #name1="ngModel"
+            class="w-full"
+          />
+        </p-inputGroup>
+        <small *ngIf="name1.invalid && (name1.dirty || name1.touched)" class="p-error">
+          Le nom est obligatoire
+        </small>
+      </div>
+
+      <div class="field col-6">
+        <label for="speciality">Spécialité</label>
+        <p-dropdown
+          id="speciality"
+          [(ngModel)]="speciality"
+          [options]="specialities"
+          optionLabel="name"
+          optionValue="value"
+          placeholder="Sélectionnez une spécialité"
+          required
+          #specialityControl="ngModel"
+          class="w-full"
+        ></p-dropdown>
+        <small *ngIf="specialityControl.invalid && (specialityControl.dirty || specialityControl.touched)" class="p-error">
+          Sélectionnez une spécialité
+        </small>
+      </div>
+
+      <div class="field col-6 mt-3">
+        <label for="level">Niveau</label>
+        <p-dropdown
+          id="level"
+          [(ngModel)]="level"
+          [options]="levels"
+          optionLabel="name"
+          optionValue="value"
+          placeholder="Sélectionnez un niveau"
+          required
+          #levelControl="ngModel"
+          class="w-full"
+        ></p-dropdown>
+        <small *ngIf="levelControl.invalid && (levelControl.dirty || levelControl.touched)" class="p-error">
+          Sélectionnez un niveau
+        </small>
+      </div>
+
+      <div class="field col-6 mt-3">
+        <label for="department">Département</label>
+        <p-dropdown
+          id="department"
+          [(ngModel)]="departement"
+          [options]="departments"
+          optionLabel="name"
+          optionValue="value1"
+          placeholder="Sélectionnez un département"
+          required
+          #departmentControl="ngModel"
+          class="w-full"
+        ></p-dropdown>
+        <small *ngIf="departmentControl.invalid && (departmentControl.dirty || departmentControl.touched)" class="p-error">
+          Sélectionnez un département
+        </small>
+      </div>
+    </div>
+
+    <ng-template pTemplate="footer">
+      <p-button
+        (click)="displayBasic = false"
+        label="Fermer"
+        icon="pi pi-times"
+        styleClass="p-button-text">
+      </p-button>
+      <p-button
+        (click)="saveGroup()"
+        label="Enregistrer"
+        icon="pi pi-check"
+        [disabled]="!name || !speciality || !level || !departement">
+      </p-button>
+    </ng-template>
+  </p-dialog>
+
+
+  <div class="flex flex-row gap-5 justify-content-center align-items-center">
+    <!-- 1ère Année -->
+    <p-card header="1ère Année" class="w-25rem shadow-3">
+      <div class="flex flex-column gap-3 p-3">
+        <p class="text-xl font-medium text-center">Niveau Première Année</p>
+
+        <p class="text-sm text-500 mb-2">Veuillez sélectionner un groupe</p>
+
+        <p-dropdown [options]="groupes" [(ngModel)]="selectedGroupe1"
+                    placeholder="Cliquez pour voir les groupes" optionLabel="name"
+                    [filter]="true" filterPlaceholder="Rechercher un groupe"
+                    class="w-full">
+          <ng-template pTemplate="item" let-groupe>
+            <div class="flex align-items-center gap-2">
+              <i class="pi pi-users"></i>
+              <div>{{groupe.name}}</div>
+            </div>
+          </ng-template>
+        </p-dropdown>
+
+        <div class="flex justify-content-center mt-3">
+          <p-button label="Accéder" icon="pi pi-arrow-right"
+                    [disabled]="!selectedGroupe1" severity="success"
+                    (onClick)="accederNiveau('1ere', selectedGroupe1)"></p-button>
+        </div>
+      </div>
+    </p-card>
+
+    <!-- 2ème Année -->
+    <p-card header="2ème Année" class="w-25rem shadow-3">
+      <div class="flex flex-column gap-3 p-3">
+        <p class="text-xl font-medium text-center">Niveau Deuxième Année</p>
+
+        <p class="text-sm text-500 mb-2">Veuillez sélectionner un groupe</p>
+
+        <p-dropdown [options]="groupes" [(ngModel)]="selectedGroupe2"
+                    placeholder="Cliquez pour voir les groupes" optionLabel="name"
+                    [filter]="true" filterPlaceholder="Rechercher un groupe"
+                    class="w-full">
+          <ng-template pTemplate="item" let-groupe>
+            <div class="flex align-items-center gap-2">
+              <i class="pi pi-users"></i>
+              <div>{{groupe.name}}</div>
+            </div>
+          </ng-template>
+        </p-dropdown>
+
+        <div class="flex justify-content-center mt-3">
+          <p-button label="Accéder" icon="pi pi-arrow-right"
+                    [disabled]="!selectedGroupe2" severity="success"
+                    (onClick)="accederNiveau('2eme', selectedGroupe2)"></p-button>
+        </div>
+      </div>
+    </p-card>
+
+    <!-- 3ème Année -->
+    <p-card header="3ème Année" class="w-25rem shadow-3">
+      <div class="flex flex-column gap-3 p-3">
+        <p class="text-xl font-medium text-center">Niveau Troisième Année</p>
+
+        <p class="text-sm text-500 mb-2">Veuillez sélectionner un groupe</p>
+
+        <p-dropdown [options]="groupes" [(ngModel)]="selectedGroupe3"
+                    placeholder="Cliquez pour voir les groupes" optionLabel="name"
+                    [filter]="true" filterPlaceholder="Rechercher un groupe"
+                    class="w-full">
+          <ng-template pTemplate="item" let-groupe>
+            <div class="flex align-items-center gap-2">
+              <i class="pi pi-users"></i>
+              <div>{{groupe.name}}</div>
+            </div>
+          </ng-template>
+        </p-dropdown>
+
+        <div class="flex justify-content-center mt-3">
+          <p-button label="Accéder" icon="pi pi-arrow-right"
+                    [disabled]="!selectedGroupe3" severity="success"
+                    (onClick)="accederNiveau('3eme', selectedGroupe3)"></p-button>
+        </div>
+
+      </div>
+    </p-card>
+  </div>
+</div>

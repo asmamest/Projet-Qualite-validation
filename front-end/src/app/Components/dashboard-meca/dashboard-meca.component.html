@@ -1,0 +1,26 @@
+<div class="dashboard-container">
+
+  <app-topbar class="topbar"></app-topbar>
+
+  <div class="stats-container">
+    <h2>Département Mecatronique</h2>
+
+    <div class="chart-row">
+      <div class="chart-wrapper" *ngFor="let level of levelsData">
+        <canvas
+          baseChart
+          [data]="chartData[level.niveau]?.data"
+          [type]="chartData[level.niveau]?.type"
+          [options]="chartData[level.niveau]?.options">
+        </canvas>
+      </div>
+    </div>
+
+
+    <div class="enseignant-box">
+      <h3>Professeurs n'ont pas encore retourné leurs examens</h3>
+      <p>{{ enseignantStat }}</p>
+    </div>
+  </div>
+
+</div>

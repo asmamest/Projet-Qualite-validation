@@ -1,0 +1,41 @@
+<div class="flex flex-column align-items-center justify-content-center min-h-screen p-4">
+
+  <div class="flex flex-column align-items-center justify-content-center ">
+    <!-- Heading with spacing -->
+    <div class="text-center mb-5">
+      <h2>Veuillez sélectionner un département</h2>
+    </div>
+
+  <div class="flex flex-wrap justify-content-center" style="max-width: 1200px; gap: 2rem;">
+    <!-- Informatique -->
+    <div class="flex-grow-1" style="min-width: 320px; max-width: 350px;">
+      <p-card header="Génie informatique" [style]="{'height': '100%', 'box-shadow': '0 4px 10px rgba(0,0,0,0.1)'}">
+        <img src="assets/images/info.jpg" alt="info" class="w-full" style="height: 180px; object-fit: cover; border-radius: 8px;">
+        <div class="flex justify-content-center mt-3">
+          <p-button label="Consulter" (onClick)="navigate()" styleClass="p-button-md"></p-button>
+        </div>
+      </p-card>
+    </div>
+
+    <!-- Electrique -->
+    <div class="flex-grow-1" style="min-width: 320px; max-width: 350px;">
+      <p-card header="Génie électrique" [style]="{'height': '100%', 'box-shadow': '0 4px 10px rgba(0,0,0,0.1)'}">
+        <img src="assets/images/meca.jpg" alt="electrique" class="w-full" style="height: 180px; object-fit: cover; border-radius: 8px;">
+        <div class="flex justify-content-center mt-3">
+          <p-button label="Consulter" (onClick)="navigate()" styleClass="p-button-md"></p-button>
+        </div>
+      </p-card>
+    </div>
+
+    <!-- Industriel -->
+    <div class="flex-grow-1" style="min-width: 320px; max-width: 350px;">
+      <p-card header="Génie industriel" [style]="{'height': '100%', 'box-shadow': '0 4px 10px rgba(0,0,0,0.1)'}">
+        <img src="assets/images/indus.jpg" alt="indus" class="w-full" style="height: 180px; object-fit: cover; border-radius: 8px;">
+        <div class="flex justify-content-center mt-3">
+          <p-button label="Consulter" (onClick)="navigate()" styleClass="p-button-md"></p-button>
+        </div>
+      </p-card>
+    </div>
+  </div>
+</div>
+</div>

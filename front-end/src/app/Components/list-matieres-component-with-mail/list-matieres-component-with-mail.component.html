@@ -1,0 +1,114 @@
+<div class="container">
+  <div class="header">
+    <h1>
+      <span class="emoji-title">📋</span>
+      Liste des Matières (Avec Envoi d'Email)
+    </h1>
+    <button class="add-btn" (click)="navigateToAddMatiere()">
+      <span class="emoji-btn">➕</span> Ajouter une matière
+    </button>
+  </div>
+
+  <div class="filters-card">
+    <h3>
+      <span class="emoji-title">🔎</span>
+      Filtres
+    </h3>
+
+    <div class="filter-grid">
+      <div class="filter-group">
+        <label for="departement">
+          <span class="emoji-label">️🏛</span>
+          Département
+        </label>
+        <select id="departement" [(ngModel)]="filters.departement" (change)="onFilterChange()">
+          <option value="">Tous les départements</option>
+          <option *ngFor="let dep of departements" [value]="dep">{{dep}}</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label for="specialite">
+          <span class="emoji-label">🎯</span>
+          Spécialité
+        </label>
+        <select id="specialite" [(ngModel)]="filters.specialite" (change)="onFilterChange()">
+          <option value="">Toutes les spécialités</option>
+          <option *ngFor="let spec of specialites" [value]="spec">{{spec}}</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label for="niveau">
+          <span class="emoji-label">📶</span>
+          Niveau
+        </label>
+        <select id="niveau" [(ngModel)]="filters.niveau" (change)="onFilterChange()">
+          <option value="">Tous les niveaux</option>
+          <option *ngFor="let niv of niveaux" [value]="niv">{{niv}}</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label for="groupe">
+          <span class="emoji-label">👥</span>
+          Groupe
+        </label>
+        <select id="groupe" [(ngModel)]="filters.groupe" (change)="onFilterChange()">
+          <option value="">Tous les groupes</option>
+          <option *ngFor="let grp of groupes" [value]="grp">{{grp}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="isLoading" class="loading">
+    <div class="spinner"></div>
+    <p>Chargement des données...</p>
+  </div>
+
+  <div *ngIf="!isLoading">
+    <div *ngIf="groupedMatieres.length === 0" class="no-results">
+      <span class="emoji">😕</span>
+      <p>Aucune matière trouvée avec les filtres sélectionnés</p>
+    </div>
+
+    <div *ngFor="let group of groupedMatieres" class="group-card">
+      <div class="group-header">
+        <h3>{{group.departement}} / {{group.specialite}} / {{group.niveau}} / {{group.groupe}}</h3>
+      </div>
+
+      <div class="matieres-table">
+        <table>
+          <thead>
+          <tr>
+            <th>👤 Enseignants</th>
+            <th>✉️ Email</th>
+            <th>📋 Matières-Enseigner</th>
+            <th>Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let ens of group.enseignants">
+            <td>{{ens.nom}}</td>
+            <td>{{ens.email}}</td>
+            <td>
+              <div *ngIf="getMatieresForEnseignant(group.matieres, ens.id).length > 0; else noMatiere">
+                <div *ngFor="let matiere of getMatieresForEnseignant(group.matieres, ens.id)">
+                  {{matiere.nomMatiere}}
+                </div>
+              </div>
+              <ng-template #noMatiere>-</ng-template>
+            </td>
+            <td>
+              <button class="email-btn" (click)="sendEmailToTeacher(ens.email, ens.nom)">
+                <span class="emoji-btn">✉️ Envoyer Email</span>
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

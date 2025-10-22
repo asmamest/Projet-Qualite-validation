@@ -1,0 +1,92 @@
+/* Container animation */
+.profile-container {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Avatar styling */
+.w-32.h-32 {
+  border: 3px solid #e5e7eb;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+.w-32.h-32:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+}
+
+.w-32.h-32 img {
+  transition: transform 0.3s ease;
+}
+
+.w-32.h-32:hover img {
+  transform: scale(1.1);
+}
+
+/* Fallback initials styling */
+.w-32.h-32 div:not(:has(img)) {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #4b5563;
+  background-color: #f3f4f6;
+}
+
+/* Info cards styling */
+.p-2.border.rounded-md {
+  transition: all 0.2s ease;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  background-color: rgba(249, 250, 251, 0.5);
+}
+
+.p-2.border.rounded-md:hover {
+  transform: translateX(5px);
+  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 0.1);
+  background-color: #f9fafb;
+}
+
+/* Labels styling */
+.text-sm.font-medium.leading-none {
+  color: #374151;
+  letter-spacing: -0.25px;
+  font-weight: 500;
+}
+
+/* Section header styling */
+.text-lg.font-medium {
+  font-size: 1.5rem;
+  color: #1f2937;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.text-lg.font-medium::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 2px;
+  background-color: #3b82f6;
+}
+
+.text-sm.text-muted-foreground {
+  color: #6b7280 !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .flex-col.md\:flex-row {
+    gap: 2rem;
+  }
+
+  .p-2.border.rounded-md:hover {
+    transform: none;
+  }
+}

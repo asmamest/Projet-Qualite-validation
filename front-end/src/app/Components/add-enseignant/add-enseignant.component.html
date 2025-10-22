@@ -1,0 +1,115 @@
+<div class="form-container">
+  <div class="notification"
+       [class.show]="showSuccessNotification"
+       [class.error]="!enseignantForm.valid && showSuccessNotification">
+    <span class="notification-icon">
+      {{ enseignantForm.valid ? '✓' : '✗' }}
+    </span>
+    <span>{{ notificationMessage }}</span>
+    <div class="notification-progress" *ngIf="showSuccessNotification"></div>
+  </div>
+
+
+
+
+  <h2 class="form-title">Ajouter un Enseignant</h2>
+
+  <form [formGroup]="enseignantForm" (ngSubmit)="onSubmit()">
+    <div class="form-grid">
+      <!-- Nom -->
+      <div class="form-group">
+        <label for="nom">👤 Nom complet</label>
+        <input type="text" id="nom" formControlName="nom"
+               [class.error]="enseignantForm.get('nom')?.invalid && enseignantForm.get('nom')?.touched">
+        <div *ngIf="enseignantForm.get('nom')?.invalid && enseignantForm.get('nom')?.touched"
+             class="error-message">
+          Le nom est obligatoire
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email">✉️ Email</label>
+        <input type="email" id="email" formControlName="email"
+               [class.error]="enseignantForm.get('email')?.invalid && enseignantForm.get('email')?.touched">
+        <div *ngIf="enseignantForm.get('email')?.invalid && enseignantForm.get('email')?.touched"
+             class="error-message">
+          Veuillez entrer un email valide
+        </div>
+      </div>
+    </div>
+
+    <div class="form-grid">
+      <!-- Département -->
+      <div class="form-group">
+        <label for="departement">️🟰 Département</label>
+        <select id="departement" formControlName="departement">
+          <option value="" disabled selected>Choisir un département</option>
+          <option *ngFor="let dep of departements" [value]="dep">{{dep}}</option>
+        </select>
+      </div>
+
+      <!-- Spécialité -->
+      <div class="form-group">
+        <label for="specialite">🎯 Spécialité</label>
+        <select id="specialite" formControlName="specialite">
+          <option value="" disabled selected>Choisir une spécialité</option>
+          <option *ngFor="let spec of specialites" [value]="spec">{{spec}}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-grid">
+      <!-- Niveau -->
+      <div class="form-group">
+        <label for="niveau"> 📶 Niveau</label>
+        <select id="niveau" formControlName="niveau">
+          <option value="" disabled selected>Choisir un niveau</option>
+          <option *ngFor="let niv of niveaux" [value]="niv">{{niv}}</option>
+        </select>
+      </div>
+
+      <!-- Groupe -->
+      <div class="form-group">
+        <label for="groupe">👥 Groupe</label>
+        <select id="groupe" formControlName="groupe">
+          <option value="" disabled selected>Choisir un groupe</option>
+          <option *ngFor="let grp of groupes" [value]="grp">{{grp}}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-grid">
+      <!-- Semestre -->
+      <div class="form-group">
+        <label for="semester">📅 Semestre</label>
+        <select id="semester" formControlName="semester">
+          <option value="" disabled selected>Choisir un semestre</option>
+          <option *ngFor="let sem of semesters" [value]="sem">{{sem}}</option>
+        </select>
+      </div>
+
+      <!-- Type de Matière -->
+      <!--<div class="form-group">
+        <label for="TypeMatiere">🏷️ Type de Matière</label>
+        <select id="TypeMatiere" formControlName="TypeMatiere">
+          <option value="" disabled selected>Choisir un type</option>
+          <option *ngFor="let type of TypeMatiere" [value]="type">{{type}}</option>
+        </select>
+      </div>-->
+    </div>
+
+    <button type="submit" class="submit-btn" [disabled]="!enseignantForm.valid">
+      ✅ Enregistrer l'Enseignant
+    </button>
+
+    <button type="button" class="submit-btn cancel-btn" routerLink="/enseignants">
+      ❌ Annuler
+    </button>
+
+    <button type="button" class="submit-btn cancel-btn1" routerLink="/add-matiere">
+      + Ajouter une matiere
+    </button>
+
+  </form>
+</div>

@@ -1,0 +1,48 @@
+/* Dans votre fichier SCSS correspondant */
+.layout-topbar {
+  overflow: visible !important;
+  .layout-topbar-logo {
+    .platform-logo {
+      height: 5rem; /* Ajustez selon vos besoins */
+      width: auto;
+      max-width: 250px; /* Pour contrôler la largeur max */
+      object-fit: contain;
+      transition: all 0.3s ease;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+  }
+}
+
+/* Pour une meilleure intégration avec le thème existant */
+.layout-topbar-logo-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navbar-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+  border: 1px solid #ccc;
+}
+/* topbar.component.css */
+.calendar-container {
+  position: relative;
+  margin:auto;
+   /* Ensures it wraps tightly around content */
+  /* Removes outer space */
+  padding: 0; /* Removes inner space */
+}
+
+app-calendar {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: 1000;
+}

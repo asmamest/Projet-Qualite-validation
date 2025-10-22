@@ -1,0 +1,184 @@
+<div class="form-container">
+  <!-- Notification -->
+  <div class="notification"
+       [class.show]="showNotification"
+       [class.error]="notificationIsError">
+    <span class="notification-icon">
+      {{ notificationIsError ? '✗' : '✓' }}
+    </span>
+    <span>{{ notificationMessage }}</span>
+    <div class="notification-progress" *ngIf="showNotification"></div>
+  </div>
+
+  <h2 class="form-title">Ajouter un nouvel utilisateur</h2>
+
+  <div class="form-card">
+    <!-- Première colonne -->
+    <div class="form-column">
+      <!-- Prénom -->
+
+      <div class="form-group">
+        <p-inputgroup class="input-group">
+          <p-inputgroup-addon class="input-icon">
+            <i class="pi pi-user"></i>
+          </p-inputgroup-addon>
+          <input
+            pInputText
+            [(ngModel)]="firstname"
+            placeholder="Prénom"
+            required
+            #firstName="ngModel"
+            class="form-input"
+          />
+        </p-inputgroup>
+        <small *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="error-message">
+          {{ firstName.errors?.['required'] ? 'Le prénom est requis' : '' }}
+        </small>
+      </div>
+
+      <!-- Nom -->
+      <div class="form-group">
+        <p-inputgroup class="input-group">
+          <p-inputgroup-addon class="input-icon">
+            <i class="pi pi-user"></i>
+          </p-inputgroup-addon>
+          <input
+            pInputText
+            [(ngModel)]="lastname"
+            placeholder="Nom"
+            required
+            #lastName="ngModel"
+            class="form-input"
+          />
+        </p-inputgroup>
+        <small *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="error-message">
+          {{ lastName.errors?.['required'] ? 'Le nom est requis' : '' }}
+        </small>
+      </div>
+
+      <!-- Email -->
+      <div class="form-group">
+        <p-inputgroup class="input-group">
+          <p-inputgroup-addon class="input-icon">
+            <i class="pi pi-envelope"></i>
+          </p-inputgroup-addon>
+          <input
+            pInputText
+            [(ngModel)]="mail"
+            placeholder="Email académique"
+            type="email"
+            required
+            #email="ngModel"
+            class="form-input"
+          />
+        </p-inputgroup>
+        <small *ngIf="email.invalid && (email.dirty || email.touched)" class="error-message">
+          {{ email.errors?.['required'] ? 'Email requis' : '' }}
+          {{ email.errors?.['email'] ? 'Format email invalide' : '' }}
+        </small>
+      </div>
+    </div>
+
+    <!-- Deuxième colonne -->
+    <div class="form-column">
+      <!-- Téléphone -->
+      <div class="form-group">
+        <p-inputgroup class="input-group">
+          <p-inputgroup-addon class="input-icon">
+            <i class="pi pi-phone"></i>
+          </p-inputgroup-addon>
+          <input
+            pInputText
+            [(ngModel)]="tel"
+            placeholder="Téléphone"
+            type="tel"
+            #phone="ngModel"
+            class="form-input"
+          />
+        </p-inputgroup>
+        <small *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="error-message">
+          Format de téléphone invalide
+        </small>
+      </div>
+
+      <!-- Nom d'utilisateur -->
+      <div class="form-group">
+        <p-inputgroup class="input-group">
+          <p-inputgroup-addon class="input-icon">
+            <i class="pi pi-at"></i>
+          </p-inputgroup-addon>
+          <input
+            pInputText
+            [(ngModel)]="username"
+            placeholder="Nom d'utilisateur"
+            required
+            minlength="4"
+            maxlength="20"
+            #username1="ngModel"
+            class="form-input"
+          />
+        </p-inputgroup>
+        <small *ngIf="username1.invalid && (username1.dirty || username1.touched)" class="error-message">
+          {{ username1.errors?.['required'] ? 'Nom d\'utilisateur requis' : '' }}
+          {{ username1.errors?.['minlength'] || username1.errors?.['maxlength'] ?
+          'Doit contenir entre 4 et 20 caractères' : '' }}
+        </small>
+      </div>
+
+      <!-- Mot de passe -->
+      <div class="form-group">
+        <p-inputgroup class="input-group">
+          <p-inputgroup-addon class="input-icon">
+            <i class="pi pi-lock"></i>
+          </p-inputgroup-addon>
+          <input
+            pInputText
+            [(ngModel)]="password"
+            placeholder="Mot de passe"
+            type="password"
+            required
+            minlength="8"
+            #password1="ngModel"
+            class="form-input"
+          />
+        </p-inputgroup>
+        <small *ngIf="password1.invalid && (password1.dirty || password1.touched)" class="error-message">
+          {{ password1.errors?.['required'] ? 'Mot de passe requis' : '' }}
+          {{ password1.errors?.['minlength'] ? '8 caractères minimum' : '' }}
+        </small>
+      </div>
+
+      <!-- Rôle -->
+      <div class="form-group">
+        <p-inputgroup class="input-group">
+          <p-inputgroup-addon class="input-icon">
+            <i class="pi pi-users"></i>
+          </p-inputgroup-addon>
+          <p-dropdown
+            [(ngModel)]="role"
+            [options]="roles"
+            optionLabel="name"
+            optionValue="value"
+            placeholder="Sélectionner un rôle"
+            required
+            #roleControl="ngModel"
+            class="form-dropdown"
+          ></p-dropdown>
+        </p-inputgroup>
+        <small *ngIf="roleControl.invalid && (roleControl.dirty || roleControl.touched)" class="error-message">
+          Sélectionnez un rôle
+        </small>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <p-button
+      label="Ajouter l'utilisateur"
+      (onClick)="addnewuser()"
+      class="submit-btn"
+      [loading]="isLoading"
+      icon="pi pi-user-plus">
+    </p-button>
+  </div>
+</div>

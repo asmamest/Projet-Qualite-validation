@@ -1,0 +1,78 @@
+<div class="card">
+  <div class="card-header">
+    <h2>Définir les dates globales</h2>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="dateForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="nom" class="form-label">Type de date</label>
+        <select id="nom" formControlName="nom" class="form-select">
+          <option value="">Sélectionner un type</option>
+          <option *ngFor="let type of dateTypes" [value]="type">
+            {{ type === 'DATE_RECEPTION' ? 'Date de réception des notes' : 'Date de validation des notes' }}
+          </option>
+        </select>
+        <div *ngIf="dateForm.get('nom')?.invalid && dateForm.get('nom')?.touched" class="text-danger">
+          Le type de date est requis
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="date" class="form-label">Date limite</label>
+        <input type="datetime-local" id="date" formControlName="date" class="form-control">
+        <div *ngIf="dateForm.get('date')?.invalid && dateForm.get('date')?.touched" class="text-danger">
+          La date est requise
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea id="description" formControlName="description" class="form-control" rows="3"></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary" [disabled]="dateForm.invalid || loading">
+        <span *ngIf="loading" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+        Enregistrer
+      </button>
+
+      <div *ngIf="success" class="alert alert-success mt-3">
+        Date enregistrée avec succès!
+      </div>
+
+      <div *ngIf="error" class="alert alert-danger mt-3">
+        {{ error }}
+      </div>
+    </form>
+  </div>
+
+  <div class="card-footer">
+    <h3>Dates actuelles</h3>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Type</th>
+        <th>Date</th>
+        <th>Description</th>
+        <th>Statut</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let date of dates">
+        <td>
+          {{ date.name === 'DATE_RECEPTION' ? 'Date de réception des notes' : 'Date de validation des notes' }}
+        </td>
+        <td>{{ date.date | date:'medium' }}</td>
+        <td>{{ date.description }}</td>
+        <td>
+            <span [class]="date.active ? 'badge bg-success' : 'badge bg-secondary'">
+              {{ date.active ? 'Active' : 'Inactive' }}
+            </span>
+        </td>
+      </tr>
+      <tr *ngIf="dates.length === 0">
+        <td colspan="4" class="text-center">Aucune date définie</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

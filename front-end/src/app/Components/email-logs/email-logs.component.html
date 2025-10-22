@@ -1,0 +1,26 @@
+<div class="container mt-4">
+  <h2>
+    <i class="fas fa-history" style="margin-right: 10px;"></i>
+    Historique des Emails Envoyés
+  </h2>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+      <tr>
+        <th><i class="fas fa-user-circle"></i> Destinataire</th>
+        <th><i class="fas fa-tag"></i> Sujet</th>
+        <th><i class="fas fa-envelope-open-text"></i> Contenu</th>
+        <th><i class="far fa-clock"></i> Date d'envoi</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let email of emailLogs">
+        <td>{{ email.toEmail }}</td>
+        <td>{{ email.subject }}</td>
+        <td>{{ email.content }}</td>
+        <td>{{ email.dateSent | date:'medium' }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

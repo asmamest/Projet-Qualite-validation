@@ -1,0 +1,50 @@
+<div class="platform-login-container">
+  <div class="login-card">
+    <div class="logo-container">
+      <img src="./assets/images/Logo_ENICarthage.jpg" alt="Logo ENICarthage" class="school-logo">
+    </div>
+    <div class="login-header">
+      <h1>Se Connecter</h1>
+      <p class="welcome-message">Accès sécurisé aux ressources académiques</p>
+    </div>
+
+    <form class="login-form">
+      <div class="input-field">
+        <label for="username">Nom d'utilisateur</label>
+        <div class="input-with-icon">
+          <i class="pi pi-user"></i>
+          <input id="username" type="text" pInputText [(ngModel)]="username" name="username" required />
+        </div>
+      </div>
+
+      <div class="input-field">
+        <label>Mot de passe</label>
+        <div class="input-with-icon">
+          <i class="pi pi-lock"></i>
+          <input id="password" type="password" pInputText [(ngModel)]="password" name="password" required />
+          <i class="pi pi-eye toggle-password" (click)="togglePasswordVisibility()" [ngClass]="{'pi-eye': !passwordVisible, 'pi-eye-slash': passwordVisible}"></i>
+        </div>
+      </div>
+
+      <div class="remember-forgot">
+        <div class="remember-me">
+          <input type="checkbox" id="remember">
+          <label for="remember">Maintenir la connexion</label>
+        </div>
+      </div>
+
+      <button (click)="login()" class="login-button" [disabled]="loading">
+        <span>Connexion</span>
+        <i class="pi pi-arrow-right"></i>
+      </button>
+    </form>
+
+    <div class="login-footer">
+      <p>© 2025 École Nationale d'Ingénieurs de Carthage - Tous droits réservés</p>
+      <div class="footer-links">
+        <a href="#">Mentions légales</a>
+        <a href="#">Confidentialité</a>
+      </div>
+    </div>
+  </div>
+</div>
