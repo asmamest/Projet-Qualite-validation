@@ -1,4 +1,5 @@
 package com.example.backend.controllers;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 
 import com.example.backend.dto.LoginRequest;
 import com.example.backend.dto.LoginResponse;
